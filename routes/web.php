@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminAspirationController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AspirationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SiswaDashboardController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +35,7 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
         //ini dashboard admin
-        Route::get('/dashboard', fn() => view('Admin.Dashboard'))->name('dashboard');
+        Route::get('/dashboard',[AdminDashboardController::class, 'index'])->name('dashboard');
         //route category
         Route::resource('category', CategoryController::class);
         //route aspiration admin
@@ -50,7 +52,7 @@ Route::middleware(['auth', 'role:siswa'])
     ->name('siswa.')
     ->group(function () {
         //ini route dashboard siswa
-        Route::get('/dashboard', fn() => view('Siswa.Dashboard'))->name('dashboard');
+        Route::get('/dashboard',[SiswaDashboardController::class, 'index'])->name('dashboard');
         //route student buat siswa
         Route::get('/student', [StudentController::class, 'index'])->name('student.index');
         Route::post('/student', [StudentController::class, 'store'])->name('student.store');

@@ -13,8 +13,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = ['ket_kategori'];
 
-    public function aspirations()
-    {
-        return $this->hasMany(Aspiration::class);
-    }
+  public function aspirations()
+{
+    return $this->hasMany(Aspiration::class, 'id_kategori');
+}
+
 }
