@@ -1,36 +1,59 @@
 @extends('Admin.layout')
 
 @section('content')
-<div class="container">
-    <h4 class="mb-3 mt-5">Tambah Mata Pelajaran</h4>
 
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ route('admin.category.update',$edit->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+<div class="row justify-content-center">
+    <div class="col-lg-6">
 
-                <div class="mb-3">
-                    <label class="form-label">Nama Kategori</label>
-                    <input type="text" name="ket_kategori"
-                           class="form-control @error('ket_kategori') is-invalid @enderror"
-                           value="{{$edit->ket_kategori}}">
-
-                    @error('ket_kategori')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('admin.category.index') }}" class="btn btn-secondary me-2">
-                        Kembali
-                    </a>
-                    <button class="btn btn-primary">
-                        Simpan
-                    </button>
-                </div>
-            </form>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold mb-0">Edit Kategori</h4>
         </div>
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+
+                <form action="{{ route('admin.category.update', $edit->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+
+                    {{-- Nama Kategori --}}
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Nama Kategori
+                        </label>
+
+                        <input type="text"
+                               name="ket_kategori"
+                               class="form-control @error('ket_kategori') is-invalid @enderror"
+                               value="{{ old('ket_kategori', $edit->ket_kategori) }}"
+                               placeholder="Contoh: Fasilitas Kelas">
+
+                        @error('ket_kategori')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    {{-- Tombol --}}
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ route('admin.category.index') }}"
+                           class="btn btn-outline-secondary">
+                            ← Kembali
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-primary shadow-sm">
+                            Update Data
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </div>
+
 @endsection

@@ -12,4 +12,9 @@ class Category extends Model
     protected $primarykey = 'id';
     protected $table = 'categories';
     protected $fillable = ['ket_kategori'];
+
+    public function aspirations()
+    {
+        return $this->hasMany(Aspiration::class);
+    }
 }
