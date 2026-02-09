@@ -59,8 +59,7 @@
 
                                 <div class="mb-3">
                                     <label for="nis" class="form-label">NIS</label>
-                                    <input type="text" id="nis" class="form-control" value="{{ $student->nis }}"
-                                        disabled>
+                                    <input type="text" id="nis" class="form-control" name="nis" value="{{ $student->nis }}">
                                 </div>
 
                                 <div class="mb-3">

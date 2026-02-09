@@ -46,11 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return match (auth()->user()->role) {
-            'admin' => redirect()->intended('/admin/dashboard'),
-            'guru'  => redirect()->intended('/guru/dashboard'),
-            'siswa' => redirect()->intended('/siswa/dashboard'),
-            default => redirect('/login'),
-        };
+        return redirect(RouteServiceProvider::HOME);
     }
 }

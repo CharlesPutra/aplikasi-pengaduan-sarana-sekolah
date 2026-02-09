@@ -36,6 +36,7 @@ class StudentController extends Controller
         $student = Student::where('user_id', auth()->id())->firstOrFail();
 
         $student->update([
+            'user_id' => auth()->id(),
             'nis' => $request->nis,
             'kelas' => $request->kelas,
         ]);
