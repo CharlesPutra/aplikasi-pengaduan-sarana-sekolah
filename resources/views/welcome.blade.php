@@ -204,7 +204,7 @@
 {{-- Footer --}}
 <footer class="text-white text-center py-4 mt-5">
     <small>
-        © {{ date('Y') }} SaranaCare | Sistem Pengaduan Sarana Sekolah
+        © {{ date('Y') }} SaranaCharlesPutra | Sistem Pengaduan Sarana Sekolah
     </small>
 </footer>
 
