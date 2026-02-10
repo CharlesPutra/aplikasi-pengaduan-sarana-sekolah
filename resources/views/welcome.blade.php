@@ -3,180 +3,199 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SaranaCare - Pengaduan Sarana Sekolah</title>
+<title>SaranaCharlesPutra - Pengaduan Sarana Sekolah</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background: #f8f9fc;
-        overflow-x: hidden;
+        background: #f4f6fb;
+        scroll-behavior: smooth;
     }
 
-    /* Navbar */
+    /* ================= NAVBAR ================= */
     .navbar {
-        backdrop-filter: blur(10px);
-        background: rgba(0,0,0,0.3);
+        transition: 0.3s ease;
+        padding: 15px 0;
     }
 
-    /* Hero */
+    .navbar.scrolled {
+        background: white !important;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-btn {
+        border-radius: 30px;
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+
+    /* ================= HERO ================= */
     .hero {
-        background: linear-gradient(135deg, #4e73df, #1cc88a);
+        background: linear-gradient(135deg, #4e73df, #224abe);
         color: white;
-        padding: 140px 0 160px 0;
+        padding: 160px 0 120px 0;
         position: relative;
     }
 
     .hero h1 {
         font-weight: 800;
+        line-height: 1.3;
     }
 
     .hero p {
         opacity: 0.9;
+        max-width: 600px;
+        margin: auto;
     }
 
-    .btn-glow {
-        background: white;
-        color: #4e73df;
-        font-weight: 600;
+    .hero-btn {
         border-radius: 50px;
         padding: 12px 30px;
+        font-weight: 600;
         transition: 0.3s;
     }
 
-    .btn-glow:hover {
+    .hero-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    /* Wave */
-    .wave {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
-    /* Features */
-    .feature-card {
-        border-radius: 20px;
-        transition: 0.3s;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    /* Stats */
-    .stats {
+    /* ================= STATS ================= */
+    .stats-box {
         background: white;
         border-radius: 20px;
-        margin-top: -80px;
+        margin-top: -70px;
         position: relative;
         z-index: 10;
     }
 
-    /* CTA */
+    .stats-box h2 {
+        font-weight: 700;
+    }
+
+    /* ================= FEATURES ================= */
+    .feature-card {
+        border-radius: 18px;
+        transition: 0.3s ease;
+        border: none;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    }
+
+    /* ================= CTA ================= */
     .cta {
-        background: linear-gradient(135deg, #4e73df, #36b9cc);
+        background: linear-gradient(135deg, #1cc88a, #17a673);
         border-radius: 25px;
         color: white;
     }
 
+    /* ================= FOOTER ================= */
     footer {
-        background: #111;
+        background: #111827;
     }
 </style>
 </head>
 <body>
 
-{{-- Navbar --}}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+{{-- NAVBAR --}}
+<nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#">🏫 SaranaCharlesPutra</a>
+        <a class="navbar-brand" href="#">
+            🏫 SaranaCharlesPutra
+        </a>
 
         <div>
-            <a href="{{ route('login') }}" class="btn btn-light btn-sm me-2">Login</a>
-            <a href="{{ route('register') }}" class="btn btn-outline-light btn-sm">Daftar</a>
+            <a href="{{ route('login') }}" class="btn btn-outline-primary nav-btn me-2">
+                Login
+            </a>
+            <a href="{{ route('register') }}" class="btn btn-primary nav-btn">
+                Daftar
+            </a>
         </div>
     </div>
 </nav>
 
-{{-- Hero --}}
+{{-- HERO --}}
 <section class="hero text-center">
     <div class="container">
-        <h1 class="display-4 mb-3">
-            Laporkan Kerusakan Fasilitas Sekolah Dengan Mudah
+        <h1 class="display-5 mb-4">
+            Sistem Pengaduan Sarana Sekolah <br>
+            Lebih Cepat & Transparan
         </h1>
         <p class="lead mb-4">
-            Sistem pengaduan digital yang cepat, transparan, dan efisien untuk kenyamanan belajar.
+            Laporkan fasilitas rusak, pantau prosesnya secara real-time,
+            dan bantu ciptakan lingkungan belajar yang nyaman.
         </p>
 
-        <a href="{{ route('login') }}" class="btn btn-glow shadow">
-            Mulai Sekarang
+        <a href="{{ route('login') }}" class="btn btn-light hero-btn shadow">
+            🚀 Mulai Sekarang
         </a>
     </div>
-
-    {{-- <svg class="wave" viewBox="0 0 1440 320">
-        <path fill="#f8f9fc" fill-opacity="1"
-            d="M0,192L60,186.7C120,181,240,171,360,181.3C480,192,600,224,720,224C840,224,960,192,1080,170.7C1200,149,1320,139,1380,133.3L1440,128L1440,320L0,320Z">
-        </path>
-    </svg> --}}
 </section>
 
-{{-- Statistik Section --}}
+{{-- STATS --}}
 <div class="container">
-    <div class="stats shadow p-5 text-center">
+    <div class="stats-box shadow p-5 text-center">
         <div class="row">
             <div class="col-md-4">
-                <h2 class="fw-bold text-primary">100+</h2>
-                <p class="text-muted">Laporan Diproses</p>
+                <h2 class="text-primary">120+</h2>
+                <p class="text-muted mb-0">Laporan Masuk</p>
             </div>
             <div class="col-md-4">
-                <h2 class="fw-bold text-success">95%</h2>
-                <p class="text-muted">Terselesaikan</p>
+                <h2 class="text-success">90%</h2>
+                <p class="text-muted mb-0">Diselesaikan</p>
             </div>
             <div class="col-md-4">
-                <h2 class="fw-bold text-info">24 Jam</h2>
-                <p class="text-muted">Respon Admin</p>
+                <h2 class="text-info">1x24 Jam</h2>
+                <p class="text-muted mb-0">Respon Admin</p>
             </div>
         </div>
     </div>
 </div>
 
-{{-- Features --}}
+{{-- FEATURES --}}
 <section class="py-5">
     <div class="container text-center">
-        <h2 class="fw-bold mb-5">Kenapa Memilih SaranaCharlesPutra?</h2>
+        <h2 class="fw-bold mb-5">Kenapa Memilih Sistem Ini?</h2>
 
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="p-4 bg-white feature-card shadow-sm">
-                    <h1>⚡</h1>
+                <div class="card feature-card p-4 shadow-sm">
+                    <div class="fs-1">⚡</div>
                     <h5 class="fw-bold mt-3">Cepat & Praktis</h5>
-                    <p class="text-muted">
-                        Laporan dikirim dalam hitungan menit tanpa proses rumit.
+                    <p class="text-muted small">
+                        Kirim laporan hanya dalam beberapa klik.
                     </p>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="p-4 bg-white feature-card shadow-sm">
-                    <h1>📊</h1>
-                    <h5 class="fw-bold mt-3">Monitoring Real-Time</h5>
-                    <p class="text-muted">
-                        Pantau status pengaduan kapan saja dan di mana saja.
+                <div class="card feature-card p-4 shadow-sm">
+                    <div class="fs-1">📊</div>
+                    <h5 class="fw-bold mt-3">Monitoring Status</h5>
+                    <p class="text-muted small">
+                        Pantau progres pengaduan secara langsung.
                     </p>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="p-4 bg-white feature-card shadow-sm">
-                    <h1>🔒</h1>
-                    <h5 class="fw-bold mt-3">Aman & Terpercaya</h5>
-                    <p class="text-muted">
-                        Sistem terintegrasi dan aman untuk seluruh warga sekolah.
+                <div class="card feature-card p-4 shadow-sm">
+                    <div class="fs-1">🔒</div>
+                    <h5 class="fw-bold mt-3">Aman & Transparan</h5>
+                    <p class="text-muted small">
+                        Sistem terintegrasi dengan manajemen sekolah.
                     </p>
                 </div>
             </div>
@@ -189,24 +208,32 @@
     <div class="container">
         <div class="cta p-5 text-center shadow-lg">
             <h3 class="fw-bold mb-3">
-                Jangan Biarkan Fasilitas Rusak Mengganggu Belajar
+                Mari Wujudkan Sekolah yang Lebih Nyaman
             </h3>
             <p class="mb-4">
-                Bergabung sekarang dan bantu sekolah menjadi lebih baik.
+                Satu laporan Anda sangat berarti untuk perubahan.
             </p>
-            <a href="{{ route('register') }}" class="btn btn-light btn-lg px-4">
+            <a href="{{ route('register') }}" class="btn btn-light btn-lg px-4 rounded-pill">
                 Daftar Sekarang
             </a>
         </div>
     </div>
 </section>
 
-{{-- Footer --}}
+{{-- FOOTER --}}
 <footer class="text-white text-center py-4 mt-5">
     <small>
-        © {{ date('Y') }} SaranaCharlesPutra | Sistem Pengaduan Sarana Sekolah
+        © {{ date('Y') }} SaranaCharlesPutra — Sistem Pengaduan Sarana Sekolah
     </small>
 </footer>
+
+<script>
+    // Navbar effect saat scroll
+    window.addEventListener('scroll', function () {
+        let navbar = document.querySelector('.navbar');
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+</script>
 
 </body>
 </html>
