@@ -1,137 +1,177 @@
 <!doctype html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard Admin</title>
+    <title>Admin Panel</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        .navbar-admin {
-            background: linear-gradient(90deg, #212529, #343a40);
+        body {
+            background: #f3f4f6;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        .navbar-admin .navbar-brand {
-            font-weight: 700;
-            color: #ffffff !important;
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #111827;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .navbar-admin .nav-link {
-            color: #e9ecef !important;
+        .sidebar-profile {
+            text-align: center;
+        }
+
+        .avatar-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 auto 10px;
+        }
+
+        .sidebar-profile h6 {
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .sidebar-profile small {
+            color: #9ca3af;
+        }
+
+        /* ===== MENU ===== */
+        .sidebar-menu {
+            margin-top: 30px;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            color: #d1d5db;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: 0.2s;
             font-weight: 500;
         }
 
-        .navbar-admin .nav-link:hover {
-            color: #ffc107 !important;
+        .sidebar-menu a:hover {
+            background: #1f2937;
+            color: #fff;
         }
 
-        .navbar-admin .nav-link.active {
-            color: #ffc107 !important;
-            font-weight: 700;
+        .sidebar-menu a.active {
+            background: #2563eb;
+            color: #fff;
         }
 
-        .navbar-admin .dropdown-menu {
+        /* ===== LOGOUT ===== */
+        .logout-btn {
+            background: #1f2937;
+            border: none;
+            color: #f87171;
+            padding: 10px;
             border-radius: 12px;
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            color: #fff;
+        }
+
+        /* ===== CONTENT ===== */
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        @media(max-width: 991px){
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
-
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark navbar-admin shadow-sm sticky-top">
-    <div class="container">
+@php
+    $initial = strtoupper(substr(Auth::user()->name, 0, 1));
+@endphp
 
-        <!-- Brand -->
-        <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
-            🛠 Admin Panel
-        </a>
+<div class="sidebar">
 
-        <!-- Toggle -->
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarAdmin">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Profile -->
+    <div>
+        <div class="sidebar-profile">
+            <div class="avatar-circle">
+                {{ $initial }}
+            </div>
+            <h6>{{ Auth::user()->name }}</h6>
+            <small>Administrator</small>
+        </div>
 
         <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarAdmin">
+        <div class="sidebar-menu mt-4">
 
-            <!-- Left Menu -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a href="{{ route('admin.dashboard') }}"
+               class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                📊 Dashboard
+            </a>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
-                       href="{{ route('admin.dashboard') }}">
-                        Dashboard
-                    </a>
-                </li>
+            <a href="{{ route('admin.category.index') }}"
+               class="{{ request()->routeIs('admin.category.*') ? 'active' : '' }}">
+                📂 Category
+            </a>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.category.*') ? 'active' : '' }}"
-                       href="{{ route('admin.category.index') }}">
-                        Category
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.aspirations.*') ? 'active' : '' }}"
-                       href="{{ route('admin.aspirations.index') }}">
-                        Pengaduan
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- Right Menu -->
-            <ul class="navbar-nav">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-semibold"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown">
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                        <li>
-                            <span class="dropdown-item-text text-muted small">
-                                Role: Admin
-                            </span>
-                        </li>
-
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit"
-                                        class="dropdown-item text-danger">
-                                    🚪 Logout
-                                </button>
-                            </form>
-                        </li>
-
-                    </ul>
-                </li>
-
-            </ul>
+            <a href="{{ route('admin.aspirations.index') }}"
+               class="{{ request()->routeIs('admin.aspirations.*') ? 'active' : '' }}">
+                📝 Pengaduan
+            </a>
 
         </div>
     </div>
-</nav>
 
-<main class="container py-4">
+    <!-- Logout -->
+    <div>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="logout-btn">
+                🚪 Logout
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<!-- Content -->
+<div class="main-content">
     @yield('content')
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 
 </body>
 </html>
