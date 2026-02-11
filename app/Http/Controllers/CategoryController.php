@@ -31,7 +31,7 @@ class CategoryController extends Controller
     {
         $request->validate(['ket_kategori' => 'required']);
         Category::create($request->all());
-        return redirect()->route('admin.category.index')->with('succsess', 'data berhasil di tambhakan');
+        return redirect()->route('admin.category.index')->with('success', 'data berhasil di tambhakan');
     }
 
     /**
@@ -59,7 +59,7 @@ class CategoryController extends Controller
         $update = Category::findOrFail($id);
         $request->validate(['ket_kategori' => 'required']);
         $update->update($request->all());
-        return redirect()->route('admin.category.index')->with('succsess', 'data berhasil di tambhakan');
+        return redirect()->route('admin.category.index')->with('success', 'data berhasil di tambhakan');
     }
 
     /**
@@ -69,6 +69,6 @@ class CategoryController extends Controller
     {
         $delete = Category::findOrFail($id);
         $delete->delete();
-        return redirect()->route('admin.category.index')->with('succsess', 'data berhasil di tambhakan');
+        return redirect()->route('admin.category.index')->with('success', 'data berhasil di tambhakan');
     }
 }
