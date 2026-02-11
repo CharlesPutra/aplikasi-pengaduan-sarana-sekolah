@@ -208,17 +208,19 @@
     <div class="container">
         <div class="cta p-5 text-center shadow-lg">
             <h3 class="fw-bold mb-3">
-                Mari Wujudkan Sekolah yang Lebih Nyaman
+                Bersama, Kita Bisa Membuat Sekolah Lebih Layak
             </h3>
             <p class="mb-4">
-                Satu laporan Anda sangat berarti untuk perubahan.
+                Laporkan fasilitas yang bermasalah dan pantau perbaikannya secara transparan.
+                Perubahan besar selalu dimulai dari satu laporan.
             </p>
-            <a href="{{ route('register') }}" class="btn btn-light btn-lg px-4 rounded-pill">
-                Daftar Sekarang
+            <a href="{{ route('register') }}" class="btn btn-light btn-lg px-5 rounded-pill fw-semibold">
+                📝 Buat Laporan Sekarang
             </a>
         </div>
     </div>
 </section>
+
 
 {{-- FOOTER --}}
 <footer class="text-white text-center py-4 mt-5">
